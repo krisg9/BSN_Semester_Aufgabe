@@ -3,29 +3,25 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * @author s0583313, Kristiyan Georgiev
+ */
 public class Filler {
-    private FileOutputStream fileOutputStream;
-    private String filename;
-    DataOutputStream dos;
+    private final String filename;
 
-    public Filler(String filename, FileOutputStream fileOutputStream) {
-        try {
-            this.fileOutputStream = new FileOutputStream(this.filename);
-            dos = new DataOutputStream(fileOutputStream);
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found. Would you like to enter another filename?");
-            System.exit(0);
-        }
+    public Filler(String filename) {
+        this.filename = filename;
     }
 
-    public void write(Task task) {
+    public void write(int integer1, int integer2) {
         try {
-            dos.writeInt(task.getInt1());
+            FileOutputStream fos = new FileOutputStream(filename);
+            DataOutputStream dos = new DataOutputStream(fos);
+            dos.writeInt(integer1);
             dos.writeChar(' ');
-            dos.writeInt(task.getInt2());
+            dos.write(integer2);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("File not found.");
         }
     }
-
 }
