@@ -1,6 +1,7 @@
 import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class Filler {
     private FileOutputStream fileOutputStream;
@@ -18,16 +19,13 @@ public class Filler {
     }
 
     public void write(Task task) {
-        //dos.write();
+        try {
+            dos.writeInt(task.getInt1());
+            dos.writeChar(' ');
+            dos.writeInt(task.getInt2());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void setFilename(String filename) {
-        if (filename == null) {
-            throw new NullPointerException("File cannot be null.");
-        }
-        if (filename.equals("")) {
-            throw new IllegalArgumentException("Filename cannot be empty.");
-        }
-        this.filename = filename;
-    }
 }
