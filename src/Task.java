@@ -16,8 +16,17 @@ public class Task {
         int2 = scanner.nextInt();
     }
 
+    public int getInt1() {
+        return int1;
+    }
+
+    public int getInt2() {
+        return int2;
+    }
+
     @Override
     public String toString() {
         return int1 + " " + int2;
     }
 }
+

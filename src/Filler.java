@@ -1,27 +1,24 @@
-import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.Scanner;
 
 public class Filler {
     private FileOutputStream fileOutputStream;
     private String filename;
+    DataOutputStream dos;
 
     public Filler(String filename, FileOutputStream fileOutputStream) {
         try {
             this.fileOutputStream = new FileOutputStream(this.filename);
-            DataOutputStream dos = new DataOutputStream(fileOutputStream);
+            dos = new DataOutputStream(fileOutputStream);
         } catch (FileNotFoundException e) {
             System.err.println("File not found. Would you like to enter another filename?");
-            Scanner scan = new Scanner(System.in);
-            String inputFileName = scan.next();
-            setFilename(inputFileName);
+            System.exit(0);
         }
     }
 
-    public void write() {
-
+    public void write(Task task) {
+        //dos.write();
     }
 
     public void setFilename(String filename) {
