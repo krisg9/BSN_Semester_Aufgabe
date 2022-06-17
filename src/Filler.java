@@ -1,7 +1,3 @@
-/**
- * @author s0583313, Kristiyan Georgiev
- */
-
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,9 +16,9 @@ public class Filler {
         try {
             fos = new FileOutputStream(file, true);
             dos = new DataOutputStream(fos);
-            dos.writeBytes(String.valueOf(integer1));
+            dos.writeInt(integer1);
             dos.writeBytes(" ");
-            dos.writeBytes(String.valueOf(integer2));
+            dos.writeInt(integer2);
             dos.writeBytes("\n");
         } catch (IOException e) {
             System.err.println("File not found.");
