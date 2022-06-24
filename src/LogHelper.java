@@ -15,10 +15,7 @@ public class LogHelper {
     public static void printThreadLog(String message) {
         StringBuilder sb = new StringBuilder();
         sb.append(LogHelper.getExactTime());
-        sb.append(" (Thread #");
-        sb.append(Thread.currentThread().getId());
-        sb.append("): ");
-        sb.append(message);
-        System.out.println(sb.toString());
+        sb.append(" ").append(message);
+        System.out.println(sb);
     }
 }
