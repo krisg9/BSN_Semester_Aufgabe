@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 import java.io.*;
 
-class Tests {
+class tests {
     Filler f;
     Processor p;
 
@@ -29,7 +29,7 @@ class Tests {
     // test two lines of summands
     @Test
     void testWritingResult() {
-        f.addTask(45,12);
+        f.addTask(45, 12);
         p.read();
         f.addTask(23, 32);
         p.read();
