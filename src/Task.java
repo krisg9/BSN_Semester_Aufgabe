@@ -12,12 +12,6 @@ public class Task {
         this.val2 = val2;
     }
 
-    public Task taskFromStream(DataInputStream dis) throws IOException {
-        int val1 = dis.readInt();
-        int val2 = dis.readInt();
-        return new Task(val1, val2);
-    }
-
     public void writeWithDOS(DataOutputStream dos) throws IOException {
         dos.writeInt(this.val1);
         dos.writeInt(this.val2);
