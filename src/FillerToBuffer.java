@@ -19,12 +19,14 @@ public class FillerToBuffer implements Runnable {
             ServerSocket serverSocket = null;
             serverSocket = new ServerSocket(PORT);
             while (true) {
+                // wait for a producer to connect
                 Socket s = serverSocket.accept();
                 InputStream is = s.getInputStream();
                 System.out.println("FillerToBuffer is accepting Task....");
                 DataInputStream dis = new DataInputStream(is);
                 int val1 = dis.readInt();
                 int val2 = dis.readInt();
+                // writing task to Filler's buffer (ArrayList)
                 f.addToBuffer(val1, val2);
                 is.close();
                 dis.close();

@@ -17,10 +17,10 @@ public class Processor implements Runnable {
         int val1, val2;
         while (true) {
             try {
-                // ArrayList<Path> existingFiles = (ArrayList<Path>) Files.list(toRead).toList(); couldnt delete
+                // ArrayList<Path> existingFiles = (ArrayList<Path>) Files.list(toRead).toList(); couldnt remove a file which was done ?
                 // Stream<Path> existingFilesAsStream = Files.list(toRead);
                 List<Path> existingFiles = ((Files.list(toRead)).collect(Collectors.toList())); // convert Files.list(toRead) to Stream
-                while (!existingFiles.isEmpty()) {
+                while (!existingFiles.isEmpty()) { // as long as the dir is not empty
                     String currFile = existingFiles.remove(0).toString();
                     fis = new FileInputStream(currFile);
                     dis = new DataInputStream(fis);
@@ -30,8 +30,8 @@ public class Processor implements Runnable {
                     fis.close();
                     dis.close();
                     System.out.println("Processor finished!");
-                    Files.delete(Path.of(currFile));
-                    LogHelper.printThreadLog(val1 + " + " + val2 + " = " + (val1 + val2));
+                    Files.delete(Path.of(currFile)); // remove file of task which was already calculated
+                    LogHelper.printThreadLog(val1 + " + " + val2 + " = " + (val1 + val2)); // print out
                 }
             } catch (IOException e) {
                 System.err.println("Couldnt process.....");

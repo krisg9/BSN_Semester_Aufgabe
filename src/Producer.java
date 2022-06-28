@@ -11,6 +11,7 @@ public class Producer implements Runnable {
 
     public Producer(int port) {
         PORT = port;
+        // produces random task
         val1 = (int) (Math.random() * 1000) + 1;
         val2 = (int) (Math.random() * 1000) + 1;
     }
@@ -20,6 +21,7 @@ public class Producer implements Runnable {
     public void run() {
         while (true) {
             try {
+                // connection to FillerToBuffer
                 Socket socket = new Socket("localhost", PORT);
                 OutputStream os = socket.getOutputStream();
                 System.out.println("Producer sending Task......");
@@ -29,9 +31,10 @@ public class Producer implements Runnable {
                 os.close();
                 dos.close();
                 System.out.println("Producer sent task!");
+                // leave loop if task was sent successfully
                 break;
             } catch (IOException e) {
-                // if not connected - sleep
+                // if not connected - sleep and try again
                 try {
                     System.out.println("Sleeping.");
                     Thread.sleep(WAIT);

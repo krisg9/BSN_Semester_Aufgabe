@@ -12,6 +12,7 @@ public class Task {
         this.val2 = val2;
     }
 
+    // writing task
     public void writeWithDOS(DataOutputStream dos) throws IOException {
         dos.writeInt(this.val1);
         dos.writeInt(this.val2);

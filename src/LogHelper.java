@@ -13,6 +13,7 @@ public class LogHelper {
         return df.format(date);
     }
 
+    // log the task with exact timestamp
     public static void printThreadLog(String message) {
         StringBuilder sb = new StringBuilder();
         sb.append(LogHelper.getExactTime());

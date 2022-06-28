@@ -15,11 +15,12 @@ public class FillerToFile implements Runnable {
             System.out.println("FillerToFile starting.....");
             try {
                 f.addToFile();
+                System.out.println("FillerToFile finished!");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("FillerToFile finished!");
             try {
+                // timeout until other tasks come in
                 Thread.sleep(SLEEPTIME);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
