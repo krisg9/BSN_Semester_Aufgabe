@@ -64,7 +64,12 @@ public class tests {
     void severalProducersTest() throws InterruptedException {
         final int NUMOFTHREADS = 5;
         System.out.println("================" + NUMOFTHREADS + "producer threads================");
-        Thread[] prodThreads = {new Thread(prod1), new Thread(prod2), new Thread(prod3), new Thread(prod4), new Thread(prod5)};
+        // make producer threads
+        Thread[] prodThreads = {new Thread(prod1),
+                                new Thread(prod2),
+                                new Thread(prod3),
+                                new Thread(prod4),
+                                new Thread(prod5)};
         for (int i = 0; i < NUMOFTHREADS; i++) {
             prodThreads[i].start();
         }

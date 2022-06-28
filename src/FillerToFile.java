@@ -13,7 +13,11 @@ public class FillerToFile implements Runnable {
     public void run() {
         while (true) {
             System.out.println("FillerToFile starting.....");
-            f.addToFile();
+            try {
+                f.addToFile();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             System.out.println("FillerToFile finished!");
             try {
                 Thread.sleep(SLEEPTIME);

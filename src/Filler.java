@@ -24,7 +24,7 @@ public class Filler {
         buffer.add(new Task(val1, val2));
     }
 
-    public void addToFile() {
+    public void addToFile() throws InterruptedException {
         FileOutputStream fos;
         DataOutputStream dos;
         while (true) {
@@ -40,6 +40,7 @@ public class Filler {
                     Path filepath = Paths.get(System.getProperty("user.dir") + "/" + filename);
                     Path targetPath = Paths.get(System.getProperty("user.dir") + "/Read" + "/" + filename + System.currentTimeMillis());
                     Files.move(filepath, targetPath);
+                    // Thread.sleep(400); // sleep otherwise it throws ioe
                 }
             } catch (IOException ioe) {
                 System.err.println("Filler: File not found.");
