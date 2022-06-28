@@ -19,9 +19,9 @@ public class Processor implements Runnable {
         int val1, val2;
         while (true) {
             try {
-                // ArrayList<Path> existingFiles = (ArrayList<Path>) Files.list(toRead).toList();
-                Stream<Path> existingFilesAsStream = Files.list(toRead);
-                List<Path> existingFiles = existingFilesAsStream.collect(Collectors.toList());
+                // ArrayList<Path> existingFiles = (ArrayList<Path>) Files.list(toRead).toList(); couldnt delete
+                // Stream<Path> existingFilesAsStream = Files.list(toRead);
+                List<Path> existingFiles = ((Files.list(toRead)).collect(Collectors.toList())); // convert Files.list(toRead) to Stream
                 while (!existingFiles.isEmpty()) {
                     String currFile = existingFiles.remove(0).toString();
                     fis = new FileInputStream(currFile);
