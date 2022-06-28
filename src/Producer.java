@@ -22,15 +22,18 @@ public class Producer implements Runnable {
             try {
                 Socket socket = new Socket("localhost", PORT);
                 OutputStream os = socket.getOutputStream();
+                System.out.println("Producer sending Task......");
                 DataOutputStream dos = new DataOutputStream(os);
                 dos.writeInt(this.val1);
                 dos.writeInt(this.val2);
                 os.close();
                 dos.close();
+                System.out.println("Producer sent task!");
                 break;
             } catch (IOException e) {
                 // if not connected - sleep
                 try {
+                    System.out.println("Sleeping.");
                     Thread.sleep(WAIT);
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);

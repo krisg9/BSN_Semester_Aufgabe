@@ -12,7 +12,9 @@ public class FillerToFile implements Runnable {
     @Override
     public void run() {
         while (true) {
+            System.out.println("FillerToFile starting.....");
             f.addToFile();
+            System.out.println("FillerToFile finished!");
             try {
                 Thread.sleep(SLEEPTIME);
             } catch (InterruptedException e) {

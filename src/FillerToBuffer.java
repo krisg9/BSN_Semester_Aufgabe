@@ -21,12 +21,14 @@ public class FillerToBuffer implements Runnable {
             while (true) {
                 Socket s = serverSocket.accept();
                 InputStream is = s.getInputStream();
+                System.out.println("FillerToBuffer is accepting Task....");
                 DataInputStream dis = new DataInputStream(is);
                 int val1 = dis.readInt();
                 int val2 = dis.readInt();
                 f.addToBuffer(val1, val2);
                 is.close();
                 dis.close();
+                System.out.println("FillerToBuffer: Task arrived!");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

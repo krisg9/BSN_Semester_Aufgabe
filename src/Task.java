@@ -16,4 +16,11 @@ public class Task {
         dos.writeInt(this.val1);
         dos.writeInt(this.val2);
     }
+
+    /*
+    @Override
+    public String toString() {
+        return "Task: " + val1 + " + " + val2 + " = " + (val1 + val2);
+    }
+     */
 }

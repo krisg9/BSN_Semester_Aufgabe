@@ -9,9 +9,12 @@ import java.util.List;
 
 public class Filler {
     private List<Task> buffer;
-    private String filePath;
+    // not needed?
+    //private String filePath;
     private String filename = "testfile.txt";
-    private Path filepath;
+
+    // not needed?
+    //private Path filepath;
 
     public Filler() {
         buffer = new ArrayList<>();
@@ -24,21 +27,23 @@ public class Filler {
     public void addToFile() {
         FileOutputStream fos;
         DataOutputStream dos;
-        try {
-            fos = new FileOutputStream(filename);
-            dos = new DataOutputStream(fos);
-            Task t;
-            if (!buffer.isEmpty()) {
-                t = buffer.remove(0);
-                t.writeWithDOS(dos);
+        while (true) {
+            try {
+                fos = new FileOutputStream(filename);
+                dos = new DataOutputStream(fos);
+                Task t;
+                if (!buffer.isEmpty()) {
+                    t = buffer.remove(0);
+                    t.writeWithDOS(dos);
+                    fos.close();
+                    dos.close();
+                    Path filepath = Paths.get(System.getProperty("user.dir") + "/" + filename);
+                    Path targetPath = Paths.get(System.getProperty("user.dir") + "/Read" + "/" + filename + System.currentTimeMillis());
+                    Files.move(filepath, targetPath);
+                }
+            } catch (IOException ioe) {
+                System.err.println("Filler: File not found.");
             }
-            fos.close();
-            dos.close();
-            Path filepath = Paths.get(System.getProperty("user.dir") + filename);
-            Path targetPath = Paths.get(System.getProperty("user.dir") + "/Read" + filename + System.currentTimeMillis());
-            Files.move(filepath, targetPath);
-        } catch (IOException ioe) {
-            System.err.println("File not found.");
         }
     }
 }
