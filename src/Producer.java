@@ -24,19 +24,19 @@ public class Producer implements Runnable {
                 // connection to FillerToBuffer
                 Socket socket = new Socket("localhost", PORT);
                 OutputStream os = socket.getOutputStream();
-                System.out.println("Producer sending Task......");
+                LogHelper.printThreadLog("Producer sending Task......");
                 DataOutputStream dos = new DataOutputStream(os);
                 dos.writeInt(this.val1);
                 dos.writeInt(this.val2);
                 os.close();
                 dos.close();
-                System.out.println("Producer sent task!");
+                LogHelper.printThreadLog("Producer sent task!");
                 // leave loop if task was sent successfully
                 break;
             } catch (IOException e) {
                 // if not connected - sleep and try again
                 try {
-                    System.out.println("Sleeping.");
+                    LogHelper.printThreadLog("Sleeping.");
                     Thread.sleep(WAIT);
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);

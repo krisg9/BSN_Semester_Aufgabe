@@ -14,10 +14,20 @@ public class LogHelper {
     }
 
     // log the task with exact timestamp
-    public static void printThreadLog(String message) {
+    public static void printTaskLog(String message) {
         StringBuilder sb = new StringBuilder();
         sb.append(LogHelper.getExactTime());
         sb.append(".................").append(message);
+        System.out.println(sb);
+    }
+
+    public static void printThreadLog(String message) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(LogHelper.getExactTime());
+        sb.append(" (Thread #");
+        sb.append(Thread.currentThread().getId());
+        sb.append("): ");
+        sb.append(message);
         System.out.println(sb);
     }
 }

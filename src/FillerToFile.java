@@ -12,10 +12,10 @@ public class FillerToFile implements Runnable {
     @Override
     public void run() {
         while (true) {
-            System.out.println("FillerToFile starting.....");
+            LogHelper.printThreadLog("FillerToFile starting.....");
             try {
                 f.addToFile();
-                System.out.println("FillerToFile finished!");
+                LogHelper.printThreadLog("FillerToFile finished!");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

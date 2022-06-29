@@ -24,14 +24,14 @@ public class Processor implements Runnable {
                     String currFile = existingFiles.remove(0).toString();
                     fis = new FileInputStream(currFile);
                     dis = new DataInputStream(fis);
-                    System.out.println("Processing.....");
+                    LogHelper.printThreadLog("Processing.....");
                     val1 = dis.readInt();
                     val2 = dis.readInt();
                     fis.close();
                     dis.close();
-                    System.out.println("Processor finished!");
+                    LogHelper.printThreadLog("Processor finished!");
                     Files.delete(Path.of(currFile)); // remove file of task which was already calculated
-                    LogHelper.printThreadLog(val1 + " + " + val2 + " = " + (val1 + val2)); // print out
+                    LogHelper.printTaskLog(val1 + " + " + val2 + " = " + (val1 + val2)); // print out
                 }
             } catch (IOException e) {
                 System.err.println("Couldnt process.....");
