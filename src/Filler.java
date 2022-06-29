@@ -41,11 +41,12 @@ public class Filler {
                     Path targetPath = Paths.get(System.getProperty("user.dir") + "/Read" + "/" + filename + System.currentTimeMillis());
                     // moves file with one task to another folder
                     Files.move(filepath, targetPath);
-                    Thread.sleep(400);
+                    Thread.sleep(200);
                     // sleep otherwise it throws ioe and some producers cant write
                 }
             } catch (IOException ioe) {
-                System.err.println("Filler: File not found.");
+                // System.err.println("Filler: File not found.");
+                // dont print anything
             }
         }
     }

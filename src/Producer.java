@@ -36,7 +36,7 @@ public class Producer implements Runnable {
             } catch (IOException e) {
                 // if not connected - sleep and try again
                 try {
-                    LogHelper.printThreadLog("Sleeping.");
+                    LogHelper.printThreadLog("Producer sleeping...zzzzz");
                     Thread.sleep(WAIT);
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);

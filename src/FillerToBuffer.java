@@ -21,6 +21,7 @@ public class FillerToBuffer implements Runnable {
             while (true) {
                 // wait for a producer to connect
                 Socket s = serverSocket.accept();
+                // race condition for socket
                 InputStream is = s.getInputStream();
                 LogHelper.printThreadLog("FillerToBuffer is accepting Task....");
                 DataInputStream dis = new DataInputStream(is);

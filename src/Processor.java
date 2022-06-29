@@ -34,7 +34,8 @@ public class Processor implements Runnable {
                     LogHelper.printTaskLog(val1 + " + " + val2 + " = " + (val1 + val2)); // print out
                 }
             } catch (IOException e) {
-                System.err.println("Couldnt process.....");
+                // System.err.println("Couldnt process.....");
+                // dont do anything
             }
         }
     }
