@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Filler {
+    // storing tasks
     private List<Task> buffer;
     // not needed?
     //private String filePath;
-    private String filename = "testfile.txt";
+
+    private final String filename = "testfile.txt";
 
     // not needed?
     //private Path filepath;
@@ -42,7 +44,10 @@ public class Filler {
                     // moves file with one task to another folder
                     Files.move(filepath, targetPath);
                     Thread.sleep(200);
-                    // sleep otherwise it throws ioe and some producers cant write
+                    /*
+                    sleep otherwise it throws ioe, because it is constantly looking for
+                    the file event when it is moved and some producers cant write
+                    */
                 }
             } catch (IOException ioe) {
                 // System.err.println("Filler: File not found.");

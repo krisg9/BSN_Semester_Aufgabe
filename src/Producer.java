@@ -24,8 +24,8 @@ public class Producer implements Runnable {
                 // connection to FillerToBuffer
                 Socket socket = new Socket("localhost", PORT);
                 OutputStream os = socket.getOutputStream();
-                LogHelper.printThreadLog("Producer sending Task......");
                 DataOutputStream dos = new DataOutputStream(os);
+                LogHelper.printThreadLog("Producer sending Task......");
                 dos.writeInt(this.val1);
                 dos.writeInt(this.val2);
                 os.close();

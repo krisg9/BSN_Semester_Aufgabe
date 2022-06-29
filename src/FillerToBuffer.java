@@ -16,7 +16,7 @@ public class FillerToBuffer implements Runnable {
     @Override
     public void run() {
         try {
-            ServerSocket serverSocket = null;
+            ServerSocket serverSocket;
             serverSocket = new ServerSocket(PORT);
             while (true) {
                 // wait for a producer to connect
