@@ -3,7 +3,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -33,7 +32,6 @@ public class Processor implements Runnable {
                     LogHelper.printThreadLog("Processor finished!");
                     Files.delete(Path.of(currFile)); // remove file of task which was already calculated
                     LogHelper.printTaskLog(val1 + " + " + val2 + " = " + (val1 + val2)); // print out
-                    // sleep otherwise
                     Thread.sleep(400);
                 }
             } catch (IOException e) {

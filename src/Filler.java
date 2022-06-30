@@ -41,7 +41,7 @@ public class Filler {
                     dos.close();
                     Path filepath = Paths.get(System.getProperty("user.dir") + "/" + filename);
                     Path targetPath = Paths.get(System.getProperty("user.dir") + "/Read" + "/" + filename + System.currentTimeMillis());
-                    // moves file with one task to another folder
+                    // moves file with one task to another folder (different name because of timestamp)
                     Files.move(filepath, targetPath);
                     Thread.sleep(200);
                     /*
