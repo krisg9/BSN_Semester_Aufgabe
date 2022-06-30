@@ -32,6 +32,7 @@ public class Producer implements Runnable {
                 dos.close();
                 LogHelper.printThreadLog("Producer sent task!");
                 // leave loop if task was sent successfully
+                socket.close();
                 break;
             } catch (IOException e) {
                 // if not connected - sleep and try again
