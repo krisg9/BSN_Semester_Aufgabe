@@ -9,7 +9,7 @@ public class tests {
     Processor proc;
     FillerToBuffer ftb;
     FillerToFile ftf;
-    Producer prod, prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10;
+    Producer prod;
     final int PORT = 3333;
     Thread fToBuffer, fToFile, procThread;
     Thread[] prodThreads;
@@ -23,17 +23,6 @@ public class tests {
         fToFile = new Thread(ftf);
         proc = new Processor();
         procThread = new Thread(proc);
-        prod = new Producer(PORT);
-        prod1 = new Producer(PORT);
-        prod2 = new Producer(PORT);
-        prod3 = new Producer(PORT);
-        prod4 = new Producer(PORT);
-        prod5 = new Producer(PORT);
-        prod6 = new Producer(PORT);
-        prod7 = new Producer(PORT);
-        prod8 = new Producer(PORT);
-        prod9 = new Producer(PORT);
-        prod10 = new Producer(PORT);
     }
 
     // test one line of summands
@@ -42,7 +31,7 @@ public class tests {
         fToBuffer.start();
         fToFile.start();
         procThread.start();
-        (new Thread(prod1)).start();
+        (new Thread(new Producer(PORT))).start();
         // current test has to sleep a bit
         Thread.sleep(WAIT);
     }
@@ -53,10 +42,8 @@ public class tests {
         fToBuffer.start();
         fToFile.start();
         procThread.start();
-        Thread firstProd = new Thread(prod1);
-        Thread secondProd = new Thread(prod2);
-        firstProd.start();
-        secondProd.start();
+        (new Thread(new Producer(PORT))).start();
+        (new Thread(new Producer(PORT))).start();
         Thread.sleep(WAIT);
     }
 
@@ -66,19 +53,19 @@ public class tests {
         final int NUM_OF_THREADS = 5;
         System.out.println("================" + NUM_OF_THREADS + " PRODUCER THREADS================");
         // make producer threads
-        Thread[] prodThreads = {new Thread(prod1),
-                                new Thread(prod2),
-                                new Thread(prod3),
-                                new Thread(prod4),
-                                new Thread(prod5)};
+        prodThreads = new Thread[NUM_OF_THREADS];
         for (int i = 0; i < NUM_OF_THREADS; i++) {
-            prodThreads[i].start();
+            prodThreads[i] = new Thread(new Producer(PORT));
         }
         // filler and processor
         fToBuffer.start();
         fToFile.start();
         procThread.start();
         Thread.sleep(WAIT);
+        // start producers
+        for (int i = 0; i < NUM_OF_THREADS; i++) {
+            prodThreads[i].start();
+        }
     }
 
     @Test
@@ -86,23 +73,17 @@ public class tests {
         final int NUM_OF_THREADS = 10;
         System.out.println("================" + NUM_OF_THREADS + " PRODUCER THREADS================");
         // make producer threads
+        for (int i = 0; i < NUM_OF_THREADS; i++) {
+            prodThreads[i] = new Thread(new Producer(PORT));
+        }
         fToBuffer.start();
         fToFile.start();
         procThread.start();
-        Thread[] prodThreads = {new Thread(prod1),
-                new Thread(prod2),
-                new Thread(prod3),
-                new Thread(prod4),
-                new Thread(prod5),
-                new Thread(prod6),
-                new Thread(prod7),
-                new Thread(prod8),
-                new Thread(prod9),
-                new Thread(prod10)};
+        prodThreads = new Thread[NUM_OF_THREADS];
+        // start producer threads
         for (int i = 0; i < NUM_OF_THREADS; i++) {
             prodThreads[i].start();
         }
-        // filler and processor
         Thread.sleep(WAIT_LONGER);
     }
 
@@ -111,6 +92,7 @@ public class tests {
         final int WAIT_LONGER_LONGER = 20000;
         final int NUM_OF_THREADS = 20;
         prodThreads = new Thread[NUM_OF_THREADS];
+        // create producer threads
         for (int i = 0; i < prodThreads.length; i++) {
             prodThreads[i] = new Thread(new Producer(PORT));
         }
@@ -119,6 +101,7 @@ public class tests {
         fToBuffer.start();
         fToFile.start();
         procThread.start();
+        // start producer threads
         for (int i = 0; i < NUM_OF_THREADS; i++) {
             prodThreads[i].start();
         }
