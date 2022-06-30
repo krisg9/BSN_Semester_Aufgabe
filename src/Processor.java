@@ -2,6 +2,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,7 +12,7 @@ import java.util.stream.Collectors;
 public class Processor implements Runnable {
     private Path toRead = Paths.get(System.getProperty("user.dir") + "/Read");
 
-    public void read() {
+    public void read() throws InterruptedException {
         FileInputStream fis;
         DataInputStream dis;
         int val1, val2;
@@ -19,7 +20,7 @@ public class Processor implements Runnable {
             try {
                 // ArrayList<Path> existingFiles = (ArrayList<Path>) Files.list(toRead).toList(); couldnt remove a file which was done ?
                 // Stream<Path> existingFilesAsStream = Files.list(toRead);
-                List<Path> existingFiles = ((Files.list(toRead)).collect(Collectors.toList())); // convert Files.list(toRead) to Stream
+                ArrayList<Path> existingFiles = ((ArrayList<Path>) (Files.list(toRead)).collect(Collectors.toList())); // convert Files.list(toRead) to Stream
                 while (!existingFiles.isEmpty()) { // as long as the dir is not empty
                     String currFile = existingFiles.remove(0).toString();
                     fis = new FileInputStream(currFile);
@@ -32,16 +33,21 @@ public class Processor implements Runnable {
                     LogHelper.printThreadLog("Processor finished!");
                     Files.delete(Path.of(currFile)); // remove file of task which was already calculated
                     LogHelper.printTaskLog(val1 + " + " + val2 + " = " + (val1 + val2)); // print out
+                    // sleep otherwise
+                    Thread.sleep(400);
                 }
             } catch (IOException e) {
                 // System.err.println("Couldnt process.....");
-                // dont do anything
             }
         }
     }
 
     @Override
     public void run() {
-        this.read();
+        try {
+            this.read();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

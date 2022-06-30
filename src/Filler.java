@@ -46,7 +46,7 @@ public class Filler {
                     Thread.sleep(200);
                     /*
                     sleep otherwise it throws ioe, because it is constantly looking for
-                    the file event when it is moved and some producers cant write
+                    the file even when it is moved and some producers cant write
                     */
                 }
             } catch (IOException ioe) {

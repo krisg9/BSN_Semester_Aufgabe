@@ -11,16 +11,16 @@ public class FillerToFile implements Runnable {
 
     @Override
     public void run() {
+        LogHelper.printThreadLog("FillerToFile starting.....");
         while (true) {
-            LogHelper.printThreadLog("FillerToFile starting.....");
             try {
                 f.addToFile();
                 LogHelper.printThreadLog("FillerToFile finished!");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            // timeout until other tasks come in
             try {
-                // timeout until other tasks come in
                 Thread.sleep(SLEEPTIME);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);

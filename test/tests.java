@@ -122,7 +122,6 @@ public class tests {
         for (int i = 0; i < NUM_OF_THREADS; i++) {
             prodThreads[i].start();
         }
-        // filler and processor
         Thread.sleep(WAIT_LONGER_LONGER);
     }
 }
