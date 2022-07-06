@@ -43,7 +43,7 @@ public class Filler {
                     Path targetPath = Paths.get(System.getProperty("user.dir") + "/Read" + "/" + filename + System.currentTimeMillis());
                     // moves file with one task to another folder (different name because of timestamp)
                     Files.move(filepath, targetPath);
-                    Thread.sleep(200);
+                    Thread.sleep(50);
                     /*
                     sleep otherwise it throws ioe, because it is constantly looking for
                     the file even when it is moved and some producers cant write
