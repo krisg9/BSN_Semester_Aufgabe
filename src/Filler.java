@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class Filler {
     // storing tasks
-    private List<Task> buffer;
+    private Queue<Task> buffer;
     // not needed?
     //private String filePath;
 
@@ -19,7 +19,7 @@ public class Filler {
     //private Path filepath;
 
     public Filler() {
-        buffer = new ArrayList<>();
+        buffer = new ConcurrentLinkedDeque<>();
     }
 
     public void addToBuffer(int val1, int val2) {
@@ -35,7 +35,7 @@ public class Filler {
                 dos = new DataOutputStream(fos);
                 Task t;
                 if (!buffer.isEmpty()) {
-                    t = buffer.remove(0);
+                    t = buffer.remove();
                     t.writeWithDOS(dos);
                     fos.close();
                     dos.close();

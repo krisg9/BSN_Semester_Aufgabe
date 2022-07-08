@@ -107,4 +107,25 @@ public class tests {
         }
         Thread.sleep(WAIT_LONGER_LONGER);
     }
+
+    @Test
+    void evenMoreMoreProducers() throws InterruptedException {
+        final int WAIT_LONGER_LONGER = 30000;
+        final int NUM_OF_THREADS = 50;
+        prodThreads = new Thread[NUM_OF_THREADS];
+        // create producer threads
+        for (int i = 0; i < prodThreads.length; i++) {
+            prodThreads[i] = new Thread(new Producer(PORT));
+        }
+        System.out.println("================" + NUM_OF_THREADS + " PRODUCER THREADS================");
+        // make producer threads
+        fToBuffer.start();
+        fToFile.start();
+        procThread.start();
+        // start producer threads
+        for (int i = 0; i < NUM_OF_THREADS; i++) {
+            prodThreads[i].start();
+        }
+        Thread.sleep(WAIT_LONGER_LONGER);
+    }
 }
